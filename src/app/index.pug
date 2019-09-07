@@ -1,0 +1,14 @@
+- var pageTitle = 'Landing page'
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= pageTitle
+  body
+    .header
+      include ../images/logo/logo.pug
+      include ../blocks/header/menu/menu.pug
+      include ../blocks/header/auth/auth.pug
+    .content
+      include ../blocks/content/content.pug

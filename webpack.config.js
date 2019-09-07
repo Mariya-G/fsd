@@ -52,7 +52,7 @@ module.exports = {
         },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/blocks/header/header.pug')
+      template: path.resolve(__dirname, './src/app/index.pug')
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
