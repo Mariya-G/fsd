@@ -9,6 +9,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PAGES_DIR = '${PATHS.SRC}/pug/pages'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 //module settings
 // обращение к объекту Модуль:
 module.exports = {
@@ -37,17 +39,24 @@ module.exports = {
         {
           test: /\.pug$/,
           use: 'pug-loader'
-          }
-        // /* {
-        //   test: /\.css$/,
-        //   use: [
-        //     {
-        //       loader: MiniCssExtractPlugin.loader,
-        //     },
-        //     'css-loader'
-        //   ]
+          },
+          {
+            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }, 
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            'css-loader'
+          ]
 
-        // } */
+        }
       ]
         },
   plugins: [
@@ -61,6 +70,10 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/images', to: `assets/images` },
+      { from: 'src/fonts', to: `assets/fonts` },
+    ]),
   ]
 } 
